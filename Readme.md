@@ -1,7 +1,7 @@
 # Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Oleksandr Horbachov](https://up.htmlacademy.ru/ecmascript/5/user/615113).
-* Наставник: `Неизвестно`.
+* Наставник: [Oleksandr Horbachov](https://up.htmlacademy.ru/ecmascript/5/user/615113).
 
 ---
 
