@@ -104,7 +104,7 @@ const showRandomResultsScreen = (arr) => {
   return arr[index];
 };
 
-const checkingAnswers = () => {
+const checkAnswers = () => {
   const checkedInputs = [];
   const MIN_CHECKED_INPUT = 1;
   answerInputs.forEach((item) => {
@@ -118,7 +118,7 @@ const checkingAnswers = () => {
 answerInputs.forEach((it) => {
   it.removeAttribute(`checked`);
   it.addEventListener(`change`, () => {
-    if (checkingAnswers()) {
+    if (checkAnswers()) {
       askButton.removeAttribute(`disabled`);
     } else {
       askButton.setAttribute(`disabled`, true);
