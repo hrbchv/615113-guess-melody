@@ -4,8 +4,7 @@ const PointsPrice = {
   FALSE_ANSWER: -2
 };
 const FALSE_RESULTS = -1;
-const START_RESULTS = 0;
-const FAST_ANSWER = 2999;
+const TIME_FAST_ANSWER = 2999;
 const MAX_FALSE_ANSWERS = 2;
 
 const getCountsPoints = (userAnswers) => {
@@ -13,20 +12,20 @@ const getCountsPoints = (userAnswers) => {
     return FALSE_RESULTS;
   }
   const returnsTheScores = (arr) => {
-    let results = START_RESULTS;
     let falseAnswers = [];
-    arr.forEach((it) => {
+    let results = arr.reduce((sum, it) => {
       if (it.answer) {
-        if (it.time <= FAST_ANSWER) {
-          results += PointsPrice.FAST_ANSWER;
+        if (it.time <= TIME_FAST_ANSWER) {
+          sum += PointsPrice.FAST_ANSWER;
+          return sum;
         }
-        results += PointsPrice.TRUE_ANSWER;
-        return results;
+        sum += PointsPrice.TRUE_ANSWER;
+        return sum;
       }
-      results += PointsPrice.FALSE_ANSWER;
+      sum += PointsPrice.FALSE_ANSWER;
       falseAnswers.push(it);
-      return results;
-    });
+      return sum;
+    }, 0);
     if (falseAnswers.length > MAX_FALSE_ANSWERS) {
       return FALSE_RESULTS;
     }
