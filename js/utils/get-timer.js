@@ -5,7 +5,7 @@ const getTimer = function (time) {
   if (time < 0) {
     throw new Error(`time not negative and is not equal to zero`);
   }
-  const removeSecond = 1000;
+  const SECOND = 1000;
   return {
     activeTimer: true,
     timerTime: time,
@@ -15,7 +15,7 @@ const getTimer = function (time) {
         this.activeTimer = false;
       }
       if (this.activeTimer) {
-        this.timerTime -= removeSecond;
+        this.timerTime -= SECOND;
       } else {
         returnValue = `Время вышло!`;
       }
