@@ -1,6 +1,7 @@
 import createElement from './../utils/createElement';
 import showScreen from './../utils/showScreen';
-import nextScreen from './choose-artist';
+import {renderScreen as renderNextScreen} from './choose-artist';
+import {gameState} from '../data/data';
 
 const stringElement = `<section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -13,10 +14,11 @@ const stringElement = `<section class="main main--welcome">
     </p>
   </section>`;
 
-const screen = createElement(stringElement);
-screen.querySelector(`.main-play`).addEventListener(`click`, () => {
-  showScreen(nextScreen);
-});
+const renderScreen = () => {
+  showScreen(createElement(stringElement));
+  document.querySelector(`.main-play`).addEventListener(`click`, () => {
+    renderNextScreen(Object.assign({}, gameState));
+  });
+};
 
-export default screen;
-
+export {renderScreen};
