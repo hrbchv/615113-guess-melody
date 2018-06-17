@@ -1,4 +1,4 @@
-export const renderTemplate = (state) => `<section class="main main--level main--level-artist">
+export const renderTemplate = (level, state) => `<section class="main main--level main--level-artist">
     <a class="play-again play-again__wrap" href="#">
       <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
     </a>
@@ -15,39 +15,39 @@ export const renderTemplate = (state) => `<section class="main main--level main-
       </div>
     </svg>
     <div class="main-mistakes">
-      ${new Array(state.noteErors)
+      ${new Array(state.noteErorr)
   .fill(`<img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">`).join(``)}
     </div>
 
     <div class="main-wrap">
-      <h2 class="title main-title">${state.question}</h2>
+      <h2 class="title main-title">${level.question}</h2>
       <div class="player-wrapper">
       </div>
       <form class="main-list">
         <div class="main-answer-wrapper">
           <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1"/>
           <label class="main-answer" for="answer-1">
-            <img class="main-answer-preview" src="${state.answers[0].image}"
-                 alt="${state.answers[0].artist}" width="134" height="134">
-            ${state.answers[0].artist}
+            <img class="main-answer-preview" src="${level.answers[0].image}"
+                 alt="${level.answers[0].artist}" width="134" height="134">
+            ${level.answers[0].artist}
           </label>
         </div>
 
         <div class="main-answer-wrapper">
           <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-2"/>
           <label class="main-answer" for="answer-1">
-            <img class="main-answer-preview" src="${state.answers[1].image}"
-                 alt="${state.answers[1].artist}" width="134" height="134">
-            ${state.answers[1].artist}
+            <img class="main-answer-preview" src="${level.answers[1].image}"
+                 alt="${level.answers[1].artist}" width="134" height="134">
+            ${level.answers[1].artist}
           </label>
         </div>
 
         <div class="main-answer-wrapper">
           <input class="main-answer-r" type="radio" id="answer-3" name="answer" value="val-3"/>
           <label class="main-answer" for="answer-1">
-            <img class="main-answer-preview" src="${state.answers[2].image}"
-                 alt="${state.answers[2].artist}" width="134" height="134">
-            ${state.answers[2].artist}
+            <img class="main-answer-preview" src="${level.answers[2].image}"
+                 alt="${level.answers[2].artist}" width="134" height="134">
+            ${level.answers[2].artist}
           </label>
         </div>
       </form>

@@ -1,4 +1,4 @@
-export const renderTemplate = (state) => `<section class="main main--level main--level-artist">
+export const renderTemplate = (level, state) => `<section class="main main--level main--level-artist">
     <a class="play-again play-again__wrap" href="#">
       <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
     </a>
@@ -15,12 +15,12 @@ export const renderTemplate = (state) => `<section class="main main--level main-
       </div>
     </svg>
     <div class="main-mistakes">
-      ${new Array(state.noteErors)
+      ${new Array(state.noteErorr)
   .fill(`<img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">`).join(``)}
     </div>
 
     <div class="main-wrap">
-      <h2 class="title">${state.question}</h2>
+      <h2 class="title">${level.question}</h2>
       <form class="genre">
         <div class="genre-answer">
           <div class="player-wrapper">

@@ -4,16 +4,16 @@ import {renderTemplate} from '../templates/choose-genre-template';
 import {getAudioElement} from "../utils/get-audio-element";
 import {renderScreen as renderNextScreen} from './choose-artist';
 import {renderScreen as renderStartScreen} from './welcome';
-import {listQuestions} from '../data/data';
+import {listQuestions, gameState as newGameStat} from '../data/data';
 import {canUserPlay, changeLevel, finishGame, loseLevel, writeResult} from "../data/game-logic";
 import {compareAnswers} from "../utils/compare-answers";
+import {renderScreen as renderResultScreen} from './results';
 
 const TYPE_GENRE = `Jazz`;
 
 const renderScreen = (gameState) => {
-  console.log(gameState);
   const thisLevelQuestions = listQuestions[gameState.level - 1];
-  const thisScreen = createElement(renderTemplate(thisLevelQuestions));
+  const thisScreen = createElement(renderTemplate(thisLevelQuestions, gameState));
   const answerInputs = [...thisScreen.querySelectorAll(`[name="answer"]`)];
   const askButton = thisScreen.querySelector(`.genre-answer-send`);
   const trueAnswers = [];
@@ -38,7 +38,7 @@ const renderScreen = (gameState) => {
       gameState = writeResult(gameState, true);
       gameState = changeLevel(gameState);
       if (finishGame(gameState)) {
-        // renderResultScreen(gameState);
+        renderResultScreen(gameState);
       } else {
         renderNextScreen(gameState);
       }
@@ -48,12 +48,12 @@ const renderScreen = (gameState) => {
       if (canUserPlay(gameState)) {
         gameState = changeLevel(gameState);
         if (finishGame(gameState)) {
-          // renderResultScreen(gameState);
+          renderResultScreen(gameState);
         } else {
           renderNextScreen(gameState);
         }
       } else {
-        // renderResultScreen(gameState);
+        renderResultScreen(gameState);
       }
     }
   });
@@ -77,7 +77,7 @@ const renderScreen = (gameState) => {
     });
   });
   document.querySelector(`.play-again`).addEventListener(`click`, () => {
-    renderStartScreen();
+    renderStartScreen(newGameStat);
   });
 };
 

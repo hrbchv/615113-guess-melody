@@ -1,8 +1,21 @@
 export const gameState = {
   level: 1,
-  noteErors: 0,
+  noteErorr: 0,
   time: 300000,
   userAnswers: []
+};
+
+export const resultLose = {
+  attempts:
+    {
+      title: `Какая жалость!`,
+      mainStat: `У вас закончились все попытки.\<br>Ничего, повезёт в следующий раз!`
+    },
+  time:
+    {
+      title: `Увы и ах!`,
+      mainStat: `Время вышло!\<br>Вы не успели отгадать все мелодии`
+    },
 };
 
 export const allPlayersResult = [12, 4, 5, 6, 7, 8, 10, 12, 18];
@@ -102,7 +115,4 @@ const listQuestionsChunk = [
     }]
   }];
 
-export const listQuestions = [...listQuestionsChunk, ...listQuestionsChunk, ...listQuestionsChunk];
-listQuestions.push(listQuestionsChunk[0]);
-
-
+export const listQuestions = [...listQuestionsChunk, ...listQuestionsChunk, ...listQuestionsChunk, ...listQuestionsChunk, ...listQuestionsChunk];

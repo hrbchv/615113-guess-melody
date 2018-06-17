@@ -4,13 +4,14 @@ import {renderTemplate} from '../templates/choose-artist-template';
 import {getAudioElement} from "../utils/get-audio-element";
 import {renderScreen as renderNextScreen} from './choose-genre';
 import {renderScreen as renderStartScreen} from './welcome';
-import {listQuestions} from '../data/data';
+import {renderScreen as renderResultScreen} from './results';
+import {listQuestions, gameState as newGameStat} from '../data/data';
 import {canUserPlay, changeLevel, finishGame, loseLevel, writeResult} from "../data/game-logic";
 
 const renderScreen = (gameState) => {
-  console.log(gameState);
-  const thisScreen = createElement(renderTemplate(listQuestions[gameState.level - 1]));
-  const trueAnswer = listQuestions[gameState.level - 1].answers.find((it) => it.src);
+  const thisLevelQuestions = listQuestions[gameState.level - 1];
+  const thisScreen = createElement(renderTemplate(thisLevelQuestions, gameState));
+  const trueAnswer = thisLevelQuestions.answers.find((it) => it.src);
   const audioPlayer = getAudioElement(trueAnswer.src);
   thisScreen.querySelector(`.player-wrapper`).prepend(audioPlayer);
   showScreen(thisScreen);
@@ -21,7 +22,7 @@ const renderScreen = (gameState) => {
         gameState = writeResult(gameState, true);
         gameState = changeLevel(gameState);
         if (finishGame(gameState)) {
-          // renderResultScreen(gameState);
+          renderResultScreen(gameState);
         } else {
           renderNextScreen(gameState);
         }
@@ -31,18 +32,18 @@ const renderScreen = (gameState) => {
         if (canUserPlay(gameState)) {
           gameState = changeLevel(gameState);
           if (finishGame(gameState)) {
-            // renderResultScreen(gameState);
+            renderResultScreen(gameState);
           } else {
             renderNextScreen(gameState);
           }
         } else {
-          // renderResultScreen(gameState);
+          renderResultScreen(gameState);
         }
       }
     });
   });
   document.querySelector(`.play-again`).addEventListener(`click`, () => {
-    renderStartScreen();
+    renderStartScreen(newGameStat);
   });
 };
 

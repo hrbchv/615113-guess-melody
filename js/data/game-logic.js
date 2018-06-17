@@ -20,10 +20,11 @@ export const changeLevel = (gameState) => {
 
 const NOTE = 1;
 export const loseLevel = (gameState) => {
-  return Object.assign({}, gameState, {noteErors: gameState.noteErors + NOTE});
+  const noteErorr = gameState.noteErorr + NOTE;
+  return Object.assign({}, gameState, {noteErorr});
 };
 
 const MAX_NOTES_COUNT = 3;
 export const canUserPlay = (gameState) => {
-  return gameState.noteErors < MAX_NOTES_COUNT;
+  return gameState.noteErorr < MAX_NOTES_COUNT;
 };

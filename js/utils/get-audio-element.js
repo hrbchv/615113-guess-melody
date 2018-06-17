@@ -9,13 +9,17 @@ export const getAudioElement = (audioSrc) => {
   playerTemplate.querySelector(`audio`).remove();
   playerTemplate.prepend(audioElement);
   const audioTrack = playerTemplate.querySelector(`audio`);
+  audioTrack.setAttribute(`preload`, `auto`);
   playerControl.addEventListener(`click`, () => {
     if (audioTrack.paused) {
       [...document.querySelectorAll(`audio`)].forEach((it) => {
-        const control = it.nextElementSibling;
-        control.classList.remove(pauseClass);
-        it.pause();
+        if (!it.paused) {
+          const control = it.nextElementSibling;
+          control.classList.remove(pauseClass);
+          it.pause();
+        }
       });
+      debugger
       audioTrack.play();
     } else {
       audioTrack.pause();
