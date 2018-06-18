@@ -7,7 +7,7 @@ import {renderScreen as startRenderScreen} from "./welcome";
 import getCountsPoints from "../utils/get-counts-points";
 import getResultPlayer from "../utils/get-result-player";
 const MAX_NOTES = 2;
-const MIN_SECONS = 0
+const MIN_SECONS = 0;
 
 const renderScreen = (gameStat) => {
   let thisScreen;

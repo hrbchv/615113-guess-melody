@@ -19,7 +19,6 @@ export const getAudioElement = (audioSrc) => {
           it.pause();
         }
       });
-      debugger
       audioTrack.play();
     } else {
       audioTrack.pause();
