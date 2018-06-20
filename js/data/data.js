@@ -70,7 +70,7 @@ const GameQuestionsTitle = {
   TYPE_TWO: `Выберите ${audioTracks[3].genre} треки`
 };
 
-const GameType = {
+export const GameType = {
   TYPE_ONE: `artist`,
   TYPE_TWO: `genre`
 };
