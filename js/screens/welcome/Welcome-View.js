@@ -1,4 +1,4 @@
-import AbstractView from '../../Abstract-View';
+import AbstractView from '../../abstract-view';
 import createElement from "../../utils/create-element";
 
 
@@ -34,12 +34,12 @@ export default class WelcomeView extends AbstractView {
     return createElement(this.template);
   }
 
-  moveNextGameStep() {
+  onShowNextGameStep() {
   }
 
   bind(element) {
     element.querySelector(`.main-play`).addEventListener(`click`, () => {
-      this.moveNextGameStep();
+      this.onShowNextGameStep();
     });
   }
 }

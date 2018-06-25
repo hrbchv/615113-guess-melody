@@ -1,4 +1,4 @@
-import AbstractView from '../../Abstract-View';
+import AbstractView from '../../abstract-view';
 import createElement from "../../utils/create-element";
 import {renderTemplate as renderLoseTemplate} from "../../templates/result-lose-template";
 import {renderTemplate as renderWinTemplate} from "../../templates/result-win-template";
@@ -51,12 +51,12 @@ export default class RenderView extends AbstractView {
     return createElement(this.template);
   }
 
-  moveStartGame() {
+  onShowStartGame() {
   }
 
   bind(element) {
     element.querySelector(`.main-replay`).addEventListener(`click`, () => {
-      this.moveStartGame();
+      this.onShowStartGame();
     });
   }
 }

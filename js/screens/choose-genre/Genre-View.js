@@ -1,4 +1,4 @@
-import AbstractView from '../../Abstract-View';
+import AbstractView from '../../abstract-view';
 import createElement from "../../utils/create-element";
 import {renderTemplate} from '../../templates/choose-genre-template';
 import {getAudioElement} from "../../utils/get-audio-element";
@@ -57,10 +57,10 @@ export default class GenreView extends AbstractView {
     return createElement(this.template);
   }
 
-  moveNextGameStep() {
+  onShowNextGameStep() {
   }
 
-  moveStartScreen() {
+  onShowStartScreen() {
   }
 
   bind(element) {
@@ -72,7 +72,7 @@ export default class GenreView extends AbstractView {
       const userAnswers = inputsChecked.map((it) => {
         return it.previousElementSibling.querySelector(`audio`).src;
       });
-      this.moveNextGameStep(userAnswers, this.trueAnswers);
+      this.onShowNextGameStep(userAnswers, this.trueAnswers);
     });
     inputs.forEach((it) => {
       it.addEventListener(`change`, () => {
@@ -84,7 +84,7 @@ export default class GenreView extends AbstractView {
       });
     });
     element.querySelector(`.play-again`).addEventListener(`click`, () => {
-      this.moveStartScreen();
+      this.onShowStartScreen();
     });
   }
 }

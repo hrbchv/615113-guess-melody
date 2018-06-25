@@ -1,4 +1,4 @@
-import AbstractView from '../../Abstract-View';
+import AbstractView from '../../abstract-view';
 import createElement from "../../utils/create-element";
 import {renderTemplate} from '../../templates/choose-artist-template';
 import {getAudioElement} from "../../utils/get-audio-element";
@@ -34,21 +34,21 @@ export default class ArtistView extends AbstractView {
     return createElement(this.template);
   }
 
-  moveNextGameStep() {
+  onShowNextGameStep() {
   }
 
-  moveStartScreen() {
+  onShowStartScreen() {
   }
 
   bind(element) {
     [...element.querySelectorAll(`.main-answer`)].forEach((it) => {
       it.addEventListener(`click`, () => {
         const userAnswers = [it.innerText];
-        this.moveNextGameStep(userAnswers, [this.trueAnswers.artist]);
+        this.onShowNextGameStep(userAnswers, [this.trueAnswers.artist]);
       });
     });
     element.querySelector(`.play-again`).addEventListener(`click`, () => {
-      this.moveStartScreen();
+      this.onShowStartScreen();
     });
   }
 }

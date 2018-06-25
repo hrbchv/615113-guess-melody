@@ -1,7 +1,7 @@
 import showScreen from '../../utils/show-screen';
 import {renderScreen as renderStartScreen} from '../welcome/welcome';
 import {listQuestions} from '../../data/data';
-import GenreView from "./Genre-View";
+import GenreView from "./genre-view";
 import {changeScreen} from "../../utils/change-screen";
 
 const renderScreen = (gameState) => {
@@ -9,10 +9,10 @@ const renderScreen = (gameState) => {
   const genreView = new GenreView(thisLevelQuestions, gameState);
   showScreen(genreView.element);
   genreView.element.querySelector(`audio`).play();
-  genreView.moveNextGameStep = (userAnswers, trueAnswers) => {
+  genreView.onShowNextGameStep = (userAnswers, trueAnswers) => {
     changeScreen(userAnswers, trueAnswers, gameState);
   };
-  genreView.moveStartScreen = () => {
+  genreView.onShowStartScreen = () => {
     renderStartScreen();
   };
 };
