@@ -1,2 +1,2 @@
-import {renderScreen as renderNextScreen} from './screens/welcome';
+import {renderScreen as renderNextScreen} from './screens/welcome/welcome';
 renderNextScreen();

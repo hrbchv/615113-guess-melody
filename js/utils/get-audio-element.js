@@ -1,5 +1,5 @@
 import {audioTemplate} from '../templates/audio-template';
-import createElement from "./createElement";
+import createElement from "./create-element";
 
 export const getAudioElement = (audioSrc) => {
   const pauseClass = `player-control--pause`;
