@@ -7,19 +7,24 @@ const getTimer = function (time) {
   }
   const SECOND = 1000;
   return {
-    activeTimer: true,
     timerTime: time,
+    _activeTimer: true,
+    _levelStartTime: time,
     tick() {
-      let returnValue = ``;
       if (this.timerTime <= 0) {
-        this.activeTimer = false;
+        this._activeTimer = false;
       }
-      if (this.activeTimer) {
+      if (this._activeTimer) {
         this.timerTime -= SECOND;
-      } else {
-        returnValue = `Время вышло!`;
       }
-      return returnValue;
+    },
+    getTime() {
+      return this.timerTime;
+    },
+    getLevelTime() {
+      const levelTime = this._levelStartTime - this.timerTime;
+      this._levelStartTime = this.timerTime;
+      return levelTime;
     }
   };
 };

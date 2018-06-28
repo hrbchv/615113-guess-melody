@@ -1,2 +1,4 @@
-import {renderScreen as renderNextScreen} from './screens/welcome/welcome';
-renderNextScreen();
+import Application from "./app";
+
+Application.showWelcome();
+

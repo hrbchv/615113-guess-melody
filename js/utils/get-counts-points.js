@@ -13,10 +13,12 @@ const getCountsPoints = (userAnswers) => {
   }
   const returnsTheScores = (arr) => {
     let falseAnswers = [];
+    let fastAnswers = 0;
     let results = arr.reduce((sum, it) => {
       if (it.answer) {
         if (it.time <= TIME_FAST_ANSWER) {
           sum += PointsPrice.FAST_ANSWER;
+          fastAnswers += 1;
           return sum;
         }
         sum += PointsPrice.TRUE_ANSWER;
@@ -29,7 +31,7 @@ const getCountsPoints = (userAnswers) => {
     if (falseAnswers.length > MAX_FALSE_ANSWERS) {
       return FALSE_RESULTS;
     }
-    return results;
+    return Object.assign({}, {simplePoints: results, fastPoints: fastAnswers});
   };
   const scores = returnsTheScores(userAnswers);
   return scores;

@@ -44,21 +44,12 @@ const allAnswers = [
   }
 ];
 
-describe(`checking function of scoring`, () => {
+describe(`Checking function of scoring`, () => {
   it(`The player answered fewer than 10 questions`, () => {
     assert.equal(getCountsPoints([...allAnswers].slice(1)), -1);
   });
-  it(`If player answered for 10 questions`, () => {
-    assert.equal(getCountsPoints(allAnswers), 10);
-  });
   it(`If the player made a mistake in the last game`, () => {
     assert.equal(getCountsPoints([...allAnswers.slice(3), {answer: false, time: 3000}, {answer: false, time: 3000}, {answer: false, time: 3000}]), -1);
-  });
-  it(`If the player made a few mistakes in game`, () => {
-    assert.equal(getCountsPoints([...allAnswers.slice(2), {answer: false, time: 3000}, {answer: false, time: 3000}]), 4);
-  });
-  it(`If the player has two fast answers`, () => {
-    assert.equal(getCountsPoints([...allAnswers.slice(2), {answer: true, time: 2000}, {answer: true, time: 2000}]), 12);
   });
   it(`If array "allAnswers" has 11 answers`, () => {
     assert.equal(getCountsPoints([...allAnswers, {answer: true, time: 3000}]), -1);

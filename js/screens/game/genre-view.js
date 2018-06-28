@@ -60,9 +60,6 @@ export default class GenreView extends AbstractView {
   onShowNextGameStep() {
   }
 
-  onShowStartScreen() {
-  }
-
   bind(element) {
     const askButton = element.querySelector(`.genre-answer-send`);
     const inputs = [...element.querySelectorAll(`[name="answer"]`)];
@@ -82,9 +79,6 @@ export default class GenreView extends AbstractView {
           askButton.setAttribute(`disabled`, true);
         }
       });
-    });
-    element.querySelector(`.play-again`).addEventListener(`click`, () => {
-      this.onShowStartScreen();
     });
   }
 }
