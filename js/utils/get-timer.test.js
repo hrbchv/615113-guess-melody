@@ -15,5 +15,4 @@ describe(`Check timer`, () => {
     newTimer.tick();
     assert.equal(newTimer.timerTime, 29000);
   });
-
 });
