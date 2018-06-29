@@ -37,18 +37,12 @@ export default class ArtistView extends AbstractView {
   onShowNextGameStep() {
   }
 
-  onShowStartScreen() {
-  }
-
   bind(element) {
     [...element.querySelectorAll(`.main-answer`)].forEach((it) => {
       it.addEventListener(`click`, () => {
         const userAnswers = [it.innerText];
         this.onShowNextGameStep(userAnswers, [this.trueAnswers.artist]);
       });
-    });
-    element.querySelector(`.play-again`).addEventListener(`click`, () => {
-      this.onShowStartScreen();
     });
   }
 }

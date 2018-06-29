@@ -15,10 +15,4 @@ describe(`Check timer`, () => {
     newTimer.tick();
     assert.equal(newTimer.timerTime, 29000);
   });
-  it(`Check finish time`, () => {
-    const time = 0;
-    const newTimer = getTimer(time);
-    assert.equal(newTimer.tick(), `Время вышло!`);
-  });
-
 });

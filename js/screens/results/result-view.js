@@ -8,10 +8,11 @@ import getResultPlayer from "../../utils/get-result-player";
 
 const GameConditions = {
   MAX_NOTES: 2,
-  MIN_SECONS: 0
+  MIN_SECONS: 0,
+  MAX_TIME: 300000
 };
 
-export default class RenderView extends AbstractView {
+export default class ResaultView extends AbstractView {
   constructor(gameState) {
     super();
     this.gameState = gameState;
@@ -23,12 +24,13 @@ export default class RenderView extends AbstractView {
     } else if (this.gameState.time === GameConditions.MIN_SECONS) {
       return renderLoseTemplate(resultLose.time);
     } else {
-      const points = this.points;
+      const points = this.points.simplePoints;
       const winStat = {
         points,
-        fastPoints: 0,
+        fastPoints: this.points.fastPoints,
         descr: getResultPlayer(allPlayersResult, points),
-        erorrs: this.gameState.noteErorr
+        erorrs: this.gameState.noteErorr,
+        time: GameConditions.MAX_TIME - this.gameState.time
       };
       return renderWinTemplate(winStat);
     }

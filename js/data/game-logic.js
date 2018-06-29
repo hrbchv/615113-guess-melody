@@ -1,8 +1,10 @@
-export const writeResult = (gameState, result) => {
+import getTimer from "../utils/get-timer";
+
+export const writeResult = (gameState, result, time) => {
   const userAnswers = [...gameState.userAnswers];
   const userAnswer = {
     answer: result,
-    time: 3000
+    time
   };
   userAnswers.push(userAnswer);
   return Object.assign({}, gameState, {userAnswers});
@@ -24,7 +26,30 @@ export const loseLevel = (gameState) => {
   return Object.assign({}, gameState, {noteErorr});
 };
 
-const MAX_NOTES_COUNT = 3;
-export const canUserPlay = (gameState) => {
-  return gameState.noteErorr < MAX_NOTES_COUNT;
+
+export const tick = (gameState) => {
+  const timer = getTimer(gameState.time);
+  timer.tick();
+  return Object.assign({}, gameState, {time: timer.getTime()});
+};
+
+export const hasTime = (gameState) => {
+  const timer = getTimer(gameState.time);
+  return timer.getTime() > 0;
+};
+
+export const getMinutes = (time) => {
+  return Math.floor(time / 60000);
+};
+
+const ROUND_OFF = 1000;
+export const getSeconds = (time) => {
+  const seconds = Math.ceil((time % 60000) / ROUND_OFF);
+  if (seconds === 0) {
+    return `00`;
+  }
+  if (seconds < 10) {
+    return `0${seconds}`;
+  }
+  return seconds;
 };
