@@ -1,12 +1,15 @@
-import {gameState, listQuestions} from './data/data';
+import {gameState} from './data/data';
 import {changeLevel, hasTime, loseLevel, tick, writeResult} from "./data/game-logic";
 
-const getLevel = (state) => listQuestions[state.level - 1];
+const getLevel = (state, data) => {
+  return data[state.level - 1];
+};
 const MAX_NOTES_COUNT = 3;
 
 class GameModel {
-  constructor() {
+  constructor(data) {
     this.restart();
+    this._data = data;
   }
 
   get state() {
@@ -18,7 +21,7 @@ class GameModel {
   }
 
   hasNextLevel() {
-    return getLevel(Object.assign({}, this._state, {level: this._state.level + 1}));
+    return getLevel(Object.assign({}, this._state, {level: this._state.level + 1}), this._data);
   }
 
   nextLevel() {
@@ -34,7 +37,7 @@ class GameModel {
   }
 
   getCurrentLevel() {
-    return getLevel(this._state);
+    return getLevel(this._state, this._data);
   }
 
   tick() {

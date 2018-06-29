@@ -4,11 +4,11 @@ import {renderTemplate} from '../../templates/choose-genre-template';
 import {getAudioElement} from "../../utils/get-audio-element";
 
 export default class GenreView extends AbstractView {
-  constructor(level, gameState, typeGenre = `Jazz`) {
+  constructor(level, gameState) {
     super();
     this.gameState = gameState;
     this.level = level;
-    this.typeGenre = typeGenre;
+    this.typeGenre = level.genre;
   }
 
   get template() {

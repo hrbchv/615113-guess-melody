@@ -31,6 +31,9 @@ class GameScreen {
 
   startGame() {
     this.changeLevel();
+  }
+
+  startTimer() {
     this._levelTimeCounter = 0;
 
     this._interval = setInterval(() => {
@@ -89,7 +92,11 @@ class GameScreen {
       this.answer(userAnswers, trueAnswers);
     };
     this.changeContentView(level);
-    level.element.querySelector(`audio`).play();
+    const firstAudio = level.element.querySelector(`audio`);
+    firstAudio.addEventListener(`canplaythrough`, () => {
+      firstAudio.play();
+      this.startTimer();
+    }, false);
   }
 
   updateHeader() {

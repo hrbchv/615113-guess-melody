@@ -4,7 +4,7 @@ const PointsPrice = {
   FALSE_ANSWER: -2
 };
 const FALSE_RESULTS = -1;
-const TIME_FAST_ANSWER = 2999;
+const TIME_FAST_ANSWER = 29999;
 const MAX_FALSE_ANSWERS = 2;
 
 const getCountsPoints = (userAnswers) => {
