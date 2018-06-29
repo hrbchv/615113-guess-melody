@@ -1,6 +1,8 @@
 const showScreen = (element) => {
   const appScreen = document.querySelector(`.app`);
-  appScreen.querySelector(`section.main`).remove();
+  if (appScreen.querySelector(`section.main`)) {
+    appScreen.querySelector(`section.main`).remove();
+  }
   appScreen.prepend(element);
 };
 
