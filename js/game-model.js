@@ -1,5 +1,5 @@
 import {gameState, listQuestions} from './data/data';
-import {changeLevel, isHasTime, loseLevel, tick, writeResult} from "./data/game-logic";
+import {changeLevel, hasTime, loseLevel, tick, writeResult} from "./data/game-logic";
 
 const getLevel = (state) => listQuestions[state.level - 1];
 const MAX_NOTES_COUNT = 3;
@@ -41,8 +41,8 @@ class GameModel {
     this._state = tick(this._state);
   }
 
-  isHasTime() {
-    return isHasTime(this._state);
+  hasTime() {
+    return hasTime(this._state);
   }
 
   writeResault(result, time) {

@@ -33,7 +33,7 @@ export const tick = (gameState) => {
   return Object.assign({}, gameState, {time: timer.getTime()});
 };
 
-export const isHasTime = (gameState) => {
+export const hasTime = (gameState) => {
   const timer = getTimer(gameState.time);
   return timer.getTime() > 0;
 };

@@ -34,7 +34,7 @@ class GameScreen {
     this._levelTimeCounter = 0;
 
     this._interval = setInterval(() => {
-      if (!this.model.isHasTime()) {
+      if (!this.model.hasTime()) {
         this.stopGame();
         Application.showResaults(this.model);
       }
