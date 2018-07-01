@@ -4,7 +4,7 @@ import Application from "../../app";
 class ResaultsScreen {
   constructor(model) {
     this.model = model;
-    this.content = new ResaultView(this.model.state);
+    this.content = new ResaultView(this.model.state, this.model.allPlayersResult);
 
     this.root = this.content.element;
   }
