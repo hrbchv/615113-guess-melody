@@ -7,9 +7,10 @@ const getLevel = (state, data) => {
 const MAX_NOTES_COUNT = 3;
 
 class GameModel {
-  constructor(data) {
+  constructor(data, resData) {
     this.restart();
     this._data = data;
+    this._allPlayresResult = resData;
   }
 
   get state() {
@@ -50,6 +51,10 @@ class GameModel {
 
   writeResault(result, time) {
     this._state = writeResult(this._state, result, time);
+  }
+
+  get allPlayersResult() {
+    return this._allPlayresResult;
   }
 }
 

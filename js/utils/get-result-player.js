@@ -1,5 +1,5 @@
 const FALSE_RESULTS = false;
-const getResultPlayer = (anotherPlayers, playerStats) => {
+const getResultPlayer = (anotherPlayers = [], playerStats) => {
   if (!Array.isArray(anotherPlayers) || typeof playerStats !== `number`) {
     return FALSE_RESULTS;
   }

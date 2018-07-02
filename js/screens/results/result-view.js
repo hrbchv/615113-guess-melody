@@ -2,9 +2,12 @@ import AbstractView from '../../abstract-view';
 import createElement from "../../utils/create-element";
 import {renderTemplate as renderLoseTemplate} from "../../templates/result-lose-template";
 import {renderTemplate as renderWinTemplate} from "../../templates/result-win-template";
-import {allPlayersResult, resultLose} from "../../data/data";
+import {resultLose} from "../../data/data";
 import getCountsPoints from "../../utils/get-counts-points";
 import getResultPlayer from "../../utils/get-result-player";
+import {getAllPlayersPoints} from "../../utils/get-all-players-points";
+import serverRouter from "../../data/server-router";
+import Application from "../../app";
 
 const GameConditions = {
   MAX_NOTES: 2,
@@ -13,9 +16,10 @@ const GameConditions = {
 };
 
 export default class ResaultView extends AbstractView {
-  constructor(gameState) {
+  constructor(gameState, allPlayersRes) {
     super();
     this.gameState = gameState;
+    this.allPlayersResults = allPlayersRes;
   }
 
   get template() {
@@ -25,10 +29,13 @@ export default class ResaultView extends AbstractView {
       return renderLoseTemplate(resultLose.time);
     } else {
       const points = this.points.simplePoints;
+      serverRouter.saveResults(points).catch((err) => {
+        Application.showError(err);
+      });
       const winStat = {
         points,
         fastPoints: this.points.fastPoints,
-        descr: getResultPlayer(allPlayersResult, points),
+        descr: getResultPlayer(this.allPlayersPoints, points),
         erorrs: this.gameState.noteErorr,
         time: GameConditions.MAX_TIME - this.gameState.time
       };
@@ -38,6 +45,10 @@ export default class ResaultView extends AbstractView {
 
   get points() {
     return getCountsPoints(this.gameState.userAnswers);
+  }
+
+  get allPlayersPoints() {
+    return getAllPlayersPoints(this.allPlayersResults);
   }
 
   get element() {

@@ -5,33 +5,22 @@ import ResaultsScreen from './screens/results/resaults-screen';
 import showScreen from './utils/show-screen';
 import PreloaderScreen from "./screens/preloader/preloader";
 import ErrorScreen from './screens/errors/errors-screen';
-import {adaptServerData} from "./data/data-adapter";
-
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
+import serverRouter from "./data/server-router";
 
 let questData;
+let resultData;
 export default class Application {
   static showPreloader() {
     const preloader = new PreloaderScreen();
     showScreen(preloader.element);
     preloader.start();
-    window.fetch(`https://es.dump.academy/guess-melody/questions`).
-    then(checkStatus).
-    then((response) => response.json()).
-    then((data) => {
-      questData = adaptServerData(data);
-    }).
-    then(Application.showWelcome()).
-    catch((err) => {
+    serverRouter.loadData().then((data) => {
+      questData = data;
+    }).then(serverRouter.loadResults).then((resData) => {
+      resultData = resData;
+    }).then(Application.showWelcome()).catch((err) => {
       Application.showError(err);
-    }).
-    then(() => {
+    }).then(() => {
       preloader.stop();
     });
   }
@@ -42,7 +31,7 @@ export default class Application {
   }
 
   static showGame() {
-    const model = new GameModel(questData);
+    const model = new GameModel(questData, resultData);
     const gameScreen = new GameScreen(model);
     showScreen(gameScreen.element);
     gameScreen.startGame();
