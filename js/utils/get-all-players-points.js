@@ -1,12 +1,7 @@
-export const getAllPlayersPoints = (data) => {
-  const usersPoints = [];
-  if (!data) {
-    return usersPoints;
+export const getAllPlayersPoints = (data = []) => {
+  if (!data.length) {
+    return data;
   }
-  data.forEach((it) => {
-    if (it.points) {
-      usersPoints.push(it.points);
-    }
-  });
+  const usersPoints = data.map((it) => it.points);
   return usersPoints;
 };
