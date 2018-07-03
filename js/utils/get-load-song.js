@@ -1,7 +1,10 @@
 export const getLoadSong = (src) => {
-  return new Promise((onload, onerror) => {
-    const song = new Audio(src);
-    song.onload = onload(song);
-    song.onerror = () => onerror(`Не удалось загрузить аудиозапись: ${src}`);
+  const newAudio = new Audio();
+  const newRequest = new Request(src, {mode: `no-cors`});
+  return fetch(newRequest).then(function (response) {
+    return response.blob();
+  }).then(function (myBlob) {
+    const objectURL = URL.createObjectURL(myBlob);
+    newAudio.src = objectURL;
   });
 };
