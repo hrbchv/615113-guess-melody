@@ -16,14 +16,14 @@ export default class Application {
     const preloader = new PreloaderScreen();
     showScreen(preloader.element);
     preloader.start();
-    serverRouter.loadData().then((data) => {
+    serverRouter.loadData().
+    then((data) => {
       questData = data;
       return questData;
     }).then(getAllSongs).
     then((songs) => songs.map((it) => getLoadSong(it))).
-    then((songPromises) => {
-      Promise.all(songPromises);
-    }).then(serverRouter.loadResults).then((resData) => {
+    then((songPromises) => Promise.all(songPromises)).
+    then(serverRouter.loadResults).then((resData) => {
       resultData = resData;
     }).then(Application.showWelcome).catch((err) => {
       Application.showError(err);
