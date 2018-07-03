@@ -4,6 +4,7 @@ import GenreView from './genre-view';
 import HeaderView from "../../components/header-view";
 import {GameType} from "../../data/data";
 import {compareAnswers} from "../../utils/compare-answers";
+import {preloadTracksSrc} from "../../utils/get-load-song";
 
 const SECOND = 1000;
 
@@ -82,6 +83,7 @@ class GameScreen {
     this.updateHeader();
     const thisLevelGameState = this.model.getCurrentLevel();
     let level;
+    console.log(preloadTracksSrc);
 
     if (thisLevelGameState.type === GameType.TYPE_ONE) {
       level = new ArtistView(thisLevelGameState, this.model.state);

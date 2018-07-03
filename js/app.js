@@ -19,11 +19,9 @@ export default class Application {
     serverRouter.loadData().then((data) => {
       questData = data;
       return questData;
-    }).
-    then(getAllSongs).
-    then((songs) => songs.map((it) => getLoadSong(it))).
-    then((songPromises) => Promise.all(songPromises)).
-    then(serverRouter.loadResults).then((resData) => {
+    }).then(getAllSongs).then((songs) => songs.map((it) => getLoadSong(it))).then((songPromises) => {
+      Promise.all(songPromises);
+    }).then(serverRouter.loadResults).then((resData) => {
       resultData = resData;
     }).then(Application.showWelcome()).catch((err) => {
       Application.showError(err);

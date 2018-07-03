@@ -1,3 +1,5 @@
+export const preloadTracksSrc = [];
+
 export const getLoadSong = (src) => {
   const newAudio = new Audio();
   const newRequest = new Request(src, {mode: `no-cors`});
@@ -6,5 +8,6 @@ export const getLoadSong = (src) => {
   }).then(function (myBlob) {
     const objectURL = URL.createObjectURL(myBlob);
     newAudio.src = objectURL;
+    preloadTracksSrc.push(objectURL);
   });
 };
