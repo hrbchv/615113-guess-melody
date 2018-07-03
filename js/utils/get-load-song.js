@@ -1,13 +1,11 @@
-export const preloadTracksSrc = [];
+export const onloadSongs = [];
 
 export const getLoadSong = (src) => {
-  const newAudio = new Audio();
-  const newRequest = new Request(src, {mode: `no-cors`});
-  return fetch(newRequest).then(function (response) {
-    return response.blob();
-  }).then(function (myBlob) {
-    const objectURL = URL.createObjectURL(myBlob);
-    newAudio.src = objectURL;
-    preloadTracksSrc.push(objectURL);
+  return new Promise((onload) => {
+    const newAudio = new Audio(src);
+    newAudio.addEventListener(`canplaythrough`, () => {
+      onloadSongs.push(newAudio);
+      onload();
+    }, false);
   });
 };

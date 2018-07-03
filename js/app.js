@@ -23,7 +23,7 @@ export default class Application {
       Promise.all(songPromises);
     }).then(serverRouter.loadResults).then((resData) => {
       resultData = resData;
-    }).then(Application.showWelcome()).catch((err) => {
+    }).then(Application.showWelcome).catch((err) => {
       Application.showError(err);
     }).then(() => {
       preloader.stop();

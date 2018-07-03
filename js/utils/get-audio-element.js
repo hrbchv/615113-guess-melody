@@ -1,15 +1,22 @@
 import {audioTemplate} from '../templates/audio-template';
 import createElement from "./create-element";
+import {onloadSongs} from "./get-load-song";
 
 export const getAudioElement = (audioSrc) => {
+  let audioElementCurrent;
+  for (let song of onloadSongs) {
+    if (song.src === audioSrc) {
+      audioElementCurrent = song;
+      break;
+    }
+  }
   const pauseClass = `player-control--pause`;
-  const audioElement = new Audio(audioSrc);
+  const audioElement = audioElementCurrent;
   const playerTemplate = createElement(audioTemplate());
   const playerControl = playerTemplate.querySelector(`.player-control`);
   playerTemplate.querySelector(`audio`).remove();
   playerTemplate.prepend(audioElement);
   const audioTrack = playerTemplate.querySelector(`audio`);
-  audioTrack.setAttribute(`preload`, `auto`);
   playerControl.addEventListener(`click`, () => {
     if (audioTrack.paused) {
       [...document.querySelectorAll(`audio`)].forEach((it) => {
