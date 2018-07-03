@@ -93,10 +93,8 @@ class GameScreen {
     };
     this.changeContentView(level);
     const firstAudio = level.element.querySelector(`audio`);
-    firstAudio.addEventListener(`canplaythrough`, () => {
-      firstAudio.play();
-      this.startTimer();
-    }, false);
+    firstAudio.play();
+    this.startTimer();
   }
 
   updateHeader() {

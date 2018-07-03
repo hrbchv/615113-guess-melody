@@ -6,6 +6,8 @@ import showScreen from './utils/show-screen';
 import PreloaderScreen from "./screens/preloader/preloader";
 import ErrorScreen from './screens/errors/errors-screen';
 import serverRouter from "./data/server-router";
+import {getAllSongs} from "./utils/get-all-songs";
+import {getLoadSong} from "./utils/get-load-song";
 
 let questData;
 let resultData;
@@ -16,7 +18,12 @@ export default class Application {
     preloader.start();
     serverRouter.loadData().then((data) => {
       questData = data;
-    }).then(serverRouter.loadResults).then((resData) => {
+      return questData;
+    }).
+    then(getAllSongs).
+    then((songs) => songs.map((it) => getLoadSong(it))).
+    then((songPromises) => Promise.all(songPromises)).
+    then(serverRouter.loadResults).then((resData) => {
       resultData = resData;
     }).then(Application.showWelcome()).catch((err) => {
       Application.showError(err);
