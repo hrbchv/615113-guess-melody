@@ -5,9 +5,9 @@ const getResultPlayer = (anotherPlayers = [], playerStats) => {
   }
   anotherPlayers.push(playerStats);
   anotherPlayers.sort((a, b) => b - a);
-  let t = anotherPlayers.length;
-  let i = anotherPlayers.indexOf(playerStats) + 1;
-  let n = Math.round(100 - (i / anotherPlayers.length * 100));
+  const t = anotherPlayers.length;
+  const i = anotherPlayers.indexOf(playerStats) + 1;
+  const n = Math.round(100 - (i / anotherPlayers.length * 100));
   return `Вы заняли ${i} место из ${t} игроков. Это лучше, чем у ${n}% игроков`;
 };
 

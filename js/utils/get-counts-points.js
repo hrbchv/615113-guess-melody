@@ -12,9 +12,9 @@ const getCountsPoints = (userAnswers) => {
     return FALSE_RESULTS;
   }
   const returnsTheScores = (arr) => {
-    let falseAnswers = [];
+    const falseAnswers = [];
     let fastAnswers = 0;
-    let results = arr.reduce((sum, it) => {
+    const results = arr.reduce((sum, it) => {
       if (it.answer) {
         if (it.time <= TIME_FAST_ANSWER) {
           sum += PointsPrice.FAST_ANSWER;

@@ -8,9 +8,8 @@ const checkStatus = (response) => {
     return toJSON(response);
   } else if (response.status === 404) {
     return false;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
   }
+  throw new Error(`${response.status}: ${response.statusText}`);
 };
 
 

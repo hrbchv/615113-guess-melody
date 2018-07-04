@@ -3,11 +3,10 @@ export const compareAnswers = (firstArray, secondArray) => {
     return false;
   }
   let compareResult = true;
-  for (let i = 0; i < firstArray.length; i++) {
-    if (firstArray[i] !== secondArray[i]) {
+  firstArray.forEach((it, indx) => {
+    if (firstArray[indx] !== secondArray[indx]) {
       compareResult = false;
-      return false;
     }
-  }
+  });
   return compareResult;
 };

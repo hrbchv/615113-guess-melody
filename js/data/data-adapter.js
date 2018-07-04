@@ -3,14 +3,13 @@ import {GameType} from "./data";
 const isCorrectAnswer = (exp, src) => {
   if (exp) {
     return src;
-  } else {
-    return ``;
   }
+  return ``;
 };
 
-export const adaptServerData = (data) => {
-  const adaptData = [];
-  data.forEach((it) => {
+export const adaptServerData = (dates) => {
+  const adaptDates = [];
+  dates.forEach((it) => {
     if (it.type === GameType.TYPE_ONE) {
       it.answers.forEach((answer) => {
         answer.artist = answer.title;
@@ -25,7 +24,7 @@ export const adaptServerData = (data) => {
         answer.answer = it.genre === answer.genre;
       });
     }
-    adaptData.push(it);
+    adaptDates.push(it);
   });
-  return adaptData;
+  return adaptDates;
 };

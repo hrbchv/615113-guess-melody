@@ -27,20 +27,19 @@ export default class ResaultView extends AbstractView {
       return renderLoseTemplate(resultLose.attempts);
     } else if (this.gameState.time === GameConditions.MIN_SECONS) {
       return renderLoseTemplate(resultLose.time);
-    } else {
-      const points = this.points.simplePoints;
-      serverRouter.saveResults(points).catch((err) => {
-        Application.showError(err);
-      });
-      const winStat = {
-        points,
-        fastPoints: this.points.fastPoints,
-        descr: getResultPlayer(this.allPlayersPoints, points),
-        erorrs: this.gameState.noteErorr,
-        time: GameConditions.MAX_TIME - this.gameState.time
-      };
-      return renderWinTemplate(winStat);
     }
+    const points = this.points.simplePoints;
+    serverRouter.saveResults(points).catch((err) => {
+      Application.showError(err);
+    });
+    const winStat = {
+      points,
+      fastPoints: this.points.fastPoints,
+      descr: getResultPlayer(this.allPlayersPoints, points),
+      erorrs: this.gameState.noteErorr,
+      time: GameConditions.MAX_TIME - this.gameState.time
+    };
+    return renderWinTemplate(winStat);
   }
 
   get points() {
