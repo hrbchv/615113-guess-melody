@@ -1,13 +1,13 @@
-export const getAllSongs = (dates) => {
-  const allTracksSrc = [];
-  const uniqueTrackSrc = [];
-  dates.forEach((it) => {
+export const getAllSongs = (datas) => {
+  const allTracksSrcs = [];
+  const uniqueTracksSrcs = [];
+  datas.forEach((it) => {
     it.answers.forEach((item) => {
       if (item.src) {
-        allTracksSrc.push(item.src);
+        allTracksSrcs.push(item.src);
       }
     });
   });
-  new Set(allTracksSrc).forEach((it) => uniqueTrackSrc.push(it));
-  return uniqueTrackSrc;
+  new Set(allTracksSrcs).forEach((it) => uniqueTracksSrcs.push(it));
+  return uniqueTracksSrcs;
 };

@@ -1,7 +1,7 @@
-export const getAllPlayersPoints = (dates = []) => {
-  if (!dates.length) {
-    return dates;
+export const getAllPlayersPoints = (datas = []) => {
+  if (!datas.length) {
+    return datas;
   }
-  const usersPoints = dates.map((it) => it.points);
+  const usersPoints = datas.map((it) => it.points);
   return usersPoints;
 };

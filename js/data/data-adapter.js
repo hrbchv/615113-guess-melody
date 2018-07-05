@@ -7,9 +7,9 @@ const isCorrectAnswer = (exp, src) => {
   return ``;
 };
 
-export const adaptServerData = (dates) => {
-  const adaptDates = [];
-  dates.forEach((it) => {
+export const adaptServerData = (datas) => {
+  const adaptDatas = [];
+  datas.forEach((it) => {
     if (it.type === GameType.TYPE_ONE) {
       it.answers.forEach((answer) => {
         answer.artist = answer.title;
@@ -24,7 +24,7 @@ export const adaptServerData = (dates) => {
         answer.answer = it.genre === answer.genre;
       });
     }
-    adaptDates.push(it);
+    adaptDatas.push(it);
   });
-  return adaptDates;
+  return adaptDatas;
 };
